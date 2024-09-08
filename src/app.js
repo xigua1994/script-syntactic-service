@@ -1,15 +1,16 @@
 import Koa from 'koa'
-import fetch from 'node-fetch'
 import transformCode from './core/transform.js'
+import fetchCode from './core/http.js'
+import minifyCode from './core/minify.js'
 
 const app = new Koa()
 
 app.use(async (ctx) => {
   const queryParams = ctx.query
-  const { url, callback, failback } = queryParams
+  const { url, callback, failback, minify } = queryParams
   let draftScriptContent = ''
   try {
-    const response = await fetch(url)
+    const response = await fetchCode(url, 2000)
     if (response.ok) {
       let inputCode = await response.text()
       inputCode = transformCode(inputCode)
@@ -28,6 +29,9 @@ app.use(async (ctx) => {
     if (failback) {
       draftScriptContent += `;${failback}()`
     }
+  }
+  if (minify) {
+    draftScriptContent = await minifyCode(draftScriptContent)
   }
   ctx.body = draftScriptContent
   ctx.type = 'application/javascript'
