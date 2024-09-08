@@ -2,14 +2,8 @@
 
 ## Overview
 
-Script Syntactic Service 是一个强大的在线服务，旨在通过简单的 API 调用，对 JavaScript 脚本进行语法检查、API 处理、兼容性适配以及压缩。它通过一个简单的 HTTPS 请求，接受几个关键参数， 就实现了对目标 scrip 的语法转换。
+Script Syntactic Service 旨在通过简单的 API 调用，对 JavaScript 进行语法、API兼容性适、压缩等。它通过一个简单的 HTTPS 请求，接受几个关键参数， 就实现了对目标JavaScript的转换。
 
-## Features
-
-- **语法检查**：自动检测并报告脚本中的语法错误。
-- **API 处理**：优化和标准化脚本中的 API 调用。
-- **兼容性适配**：确保脚本在指定的浏览器或设备范围内正常运行。
-- **压缩**：可选功能，减少脚本文件大小，加快加载速度。
 
 ## API Usage
 
@@ -24,7 +18,6 @@ Script Syntactic Service 是一个强大的在线服务，旨在通过简单的 
 - **url** (required): 需要处理的 JavaScript 脚本的 URL。
 - **callback** (optional): 加载 JavaScript 脚本后的回调函数。
 - **failback** (optional): 加载/压缩 JavaScript 脚本失败时的回调函数。
-- **target** (optional): 指定需要兼容的浏览器或设备范围。
 - **minify** (optional): 是否需要压缩脚本，值为`true`或`false`。
 
 ### Example
@@ -32,7 +25,7 @@ Script Syntactic Service 是一个强大的在线服务，旨在通过简单的 
 假设你有一个 JavaScript 脚本位于`https://example.com/script.js`，你希望对其进行语法检查和压缩，并且确保它在 IE11 及以上版本的浏览器中兼容。你可以构建如下请求：
 
 ```
-https://script-syntactic-service?url=https://example.com/script.js&callback=myCallback&failback=myFailback&target=IE11&minify=true
+https://script-syntactic-service?url=https://example.com/script.js&callback=myCallback&failback=myFailback&minify=true
 ```
 
 ## Response
@@ -45,7 +38,6 @@ https://script-syntactic-service?url=https://example.com/script.js&callback=myCa
 
 ```javascript
 myCallback(function () {
-  // 处理过的脚本内容
 })
 ```
 
@@ -53,7 +45,6 @@ myCallback(function () {
 
 ```javascript
 myFailback(function () {
-  // 错误处理逻辑
 })
 ```
 
