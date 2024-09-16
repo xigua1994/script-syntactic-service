@@ -1,0 +1,32 @@
+{
+  "name": "script-syntactic-service",
+  "version": "1.0.0",
+  "description": "## Overview",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xigua1994/script-syntactic-service.git"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/xigua1994/script-syntactic-service/issues"
+  },
+  "homepage": "https://github.com/xigua1994/script-syntactic-service#readme",
+  "dependencies": {
+    "@babel/core": "^7.25.2",
+    "eslint": "^9.10.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "koa": "^2.15.3",
+    "node-fetch": "^3.3.2",
+    "prettier": "^3.3.3",
+    "terser": "^5.31.6"
+  }
+}
