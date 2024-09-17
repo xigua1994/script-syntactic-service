@@ -10,7 +10,6 @@ on:
   push:
     tags:
       - "v*.*"
-
 env:
   # Use docker.io for Docker Hub if empty
   REGISTRY: docker.io
@@ -47,8 +46,8 @@ jobs:
         uses: docker/login-action@343f7c4344506bcbf9b4de18042ae17996df046d # v3.0.0
         with:
           registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
 
       # Extract metadata (tags, labels) for Docker
       # https://github.com/docker/metadata-action
@@ -73,12 +72,6 @@ jobs:
           platforms: |
             linux/amd64
             linux/arm64
-
-      # Sign the resulting Docker image digest except on PRs.
-      # This will only write to the public Rekor transparency log when the Docker
-      # repository is public to avoid leaking data.  If you would like to publish
-      # transparency data even for private images, pass --force to cosign below.
-      # https://github.com/sigstore/cosign
       - name: Sign the published Docker image
         if: ${{ github.event_name != 'pull_request' }}
         env:
